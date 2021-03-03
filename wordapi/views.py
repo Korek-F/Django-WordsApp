@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Word
+from .models import Word, Profile
 from .serializers import WordSerializer
 from django.db.models import Q
 import random
@@ -69,4 +69,6 @@ class RegisterView(View):
             user = User.objects.create_user(username=name, email=email)
             user.set_password(password)
             user.save()
+            profile = Profile(user=user)
+            profile.save()
         return render(request, 'wordapi/register.html')

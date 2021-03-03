@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
-# Create your models here.
+
 class Word(models.Model):
     STATUS_CHOICES = (
         ("BRAK", "Nie wybrano"),
@@ -17,5 +17,11 @@ class Word(models.Model):
     def __str__(self):
         return self.word_en
 
-#class User(AbstractUser):
-#   gender = models.BooleanField(default=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    first_name = models.CharField(blank=True, null=True, max_length=40)
+    last_name = models.CharField(blank=True, null=True, max_length=40)
+
+    def __str__(self):
+        return self.user.username
+    

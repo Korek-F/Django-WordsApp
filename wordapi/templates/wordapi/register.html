@@ -1,15 +1,16 @@
 {%extends 'wordapi/base.html' %}
 {% load static %}
 {%block content%}
-    <div class="container">
-        <div>
-        <form action = "{% url 'register' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" placeholder="Nazwa" name="name" />
-            <input type="email" placeholder="Email" name="email" />
-            <input type="password" placeholder="Hasło" name="password" />
-            <button type="submit">Zarejestruj</button>
-        </form>
+    <div class="my_container">
+        <div class="register_form_box">
+            <h1 class="register_h1">Zarejestruj się!</h1>
+            <form action = "{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" class="form-control register_form" placeholder="Nazwa" name="name" />
+                <input type="email" class="form-control register_form" placeholder="Email" name="email" />
+                <input type="password" class="form-control register_form" placeholder="Hasło" name="password" />
+                <button type="submit" class="form-control register_form">Zarejestruj</button>
+            </form>
         </div>
     </div>
 {%endblock%}
