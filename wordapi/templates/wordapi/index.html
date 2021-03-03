@@ -1,249 +1,34 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Słówka</title>
-    <style type="text/css">
-        *{
-            box-sizing: border-box;
-            margin:0;
-            padding: 0;
-        }
-        body{
-            background: rgb(45,22,217);
-            background: linear-gradient(40deg, rgba(45,22,217,1) 0%, rgba(189,36,240,1) 50%, rgba(217,22,80,1) 100%) no-repeat center center fixed;
-            background-size: cover;
-        }
-        .container{
-            position: relative;
-            border-radius: 30px;
-            max-width: 800px;
-            margin:auto;
-            margin-top: 7%;
-            margin-bottom:7%;
-            box-shadow: 0 60px 60px rgba(0,0,0,1);
-            background-color:	#282828;
-            color: white;
-            height: 600px;
-        }
-        .page{
-            width: 100%;
-            height: 400;
-            text-align: center;
-            padding-top: 40px;
-        }
-        #en{
-            width: 100%;
-            font-size: 80px;
-            height:250px;
-        }
-        #pl{
-            width:100%;
-            font-size: 40px;
-            height:150px
-        }
-        .mini-nav{
-            width: 100%;
-            height: 100px;
-            display: inline;
-            
-        }
-        li{
-            height: 90px;
-            width:33.333%;
-            border: 1px solid black;
-            float: left;
-            list-style: none;
-            text-align: center;
-            border-radius: 50px;
-            padding-top:25px;
-            font-size: 40px;
-            text-shadow: rgb(0, 0, 0) 3px 0px 0px, rgb(0, 0, 0) 2.83487px 0.981584px 0px, rgb(0, 0, 0) 2.35766px 1.85511px 0px, rgb(0, 0, 0) 1.62091px 2.52441px 0px, rgb(0, 0, 0) 0.705713px 2.91581px 0px, rgb(0, 0, 0) -0.287171px 2.98622px 0px, rgb(0, 0, 0) -1.24844px 2.72789px 0px, rgb(0, 0, 0) -2.07227px 2.16926px 0px, rgb(0, 0, 0) -2.66798px 1.37182px 0px, rgb(0, 0, 0) -2.96998px 0.42336px 0px, rgb(0, 0, 0) -2.94502px -0.571704px 0px, rgb(0, 0, 0) -2.59586px -1.50383px 0px, rgb(0, 0, 0) -1.96093px -2.27041px 0px, rgb(0, 0, 0) -1.11013px -2.78704px 0px, rgb(0, 0, 0) -0.137119px -2.99686px 0px, rgb(0, 0, 0) 0.850987px -2.87677px 0px, rgb(0, 0, 0) 1.74541px -2.43999px 0px, rgb(0, 0, 0) 2.44769px -1.73459px 0px, rgb(0, 0, 0) 2.88051px -0.838247px 0px;
-            margin-bottom: 10px;
-        }
-        #red{
-            background: rgb(217,22,22,0.1);
-        }
-        #yellow{
-           background-color:rgb(248, 248, 8, 0.1);
-        }
-        #green{
-            background: rgb(7, 218, 35, 0.1);
-        }
-        #next{
-            padding-top: 20px;
-            clear: both;
-            text-align: center;
-            width:100%;
-            height: 100px;
-            font-size: 50px;
-            background-color: rgba(45,22,217,1);
-            border-radius: 30px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-        #cover{
-            position: absolute;
-            width:100%;
-            height: 400px;
-            background-color: blueviolet;
-            top:140px;
-            border-radius: 40px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            
-        }
-        @media only screen and (max-width: 500px){
-        li{
-            padding-top:35px;
-            font-size: 20px;
-        }
-        }
-    </style>
-  </head>
-  <body>
+{%extends 'wordapi/base.html' %}
+{% load static %}
+{%block content%}
     <div class="container">
-        {% if finished%}
-        <div class="page">
-            <div id="en">Gratulacje</div>
-            <div id="pl">Znasz już wszystkie słowa z listy</div>
-        </div>
+        {%if user.is_authenticated%}
+            {% if finished%}
+            <div class="page">
+                <div id="en">Gratulacje</div>
+                <div id="pl">Znasz już wszystkie słowa z listy</div>
+            </div>
+            {%else%}
+            <div class="page">
+                <div id="en">Word</div>
+                <div id="pl">Słowo</div>
+            </div>
+            <div class="mini-nav">
+                <ul>
+                    <li id="red">Nieznam</li>
+                    <li id="yellow">Kojarzę</li>
+                    <li id="green">Znam</li>
+                </ul>
+            </div>
+            <div id="next">Pokaż</div>
+            <div id="cover"></div>
+            {%endif %}
         {%else%}
-        <div class="page">
-            <div id="en">Word</div>
-            <div id="pl">Słowo</div>
-        </div>
-        <div class="mini-nav">
-            <ul>
-                <li id="red">Nieznam</li>
-                <li id="yellow">Kojarzę</li>
-                <li id="green">Znam</li>
-            </ul>
-        </div>
-        <div id="next">Pokaż</div>
-        <div id="cover"></div>
+            Zaloguj się
         {%endif %}
     </div>
 
-
-    <script type="text/javascript">
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-        const csrftoken = getCookie('csrftoken');
-
-        const btn_red = document.getElementById("red")
-        const btn_yellow = document.getElementById("yellow")
-        const btn_green = document.getElementById("green")
-
-        const cover = document.getElementById("cover")
-        function buildWord(){
-            cover.style["display"] = "block"
-            const en = document.getElementById("en")
-            const pl = document.getElementById("pl")
-            en.innerHTML = ""
-            pl.innerHTML = ""
-            btn_red.style["background"] = "rgb(217,22,22, 0.1)"
-            btn_yellow.style["background"] = "rgb(248, 248, 8, 0.1)"
-            btn_green.style["background"] = "rgb(7, 218, 35, 0.1)"
-            fetch("get-word")
-            .then((resp)=>resp.json())
-            .then(function(data){
-                console.log("Data: ", data)
-                console.log(data["id"])
-                window.word_id=data["id"]
-                en.innerHTML = data["word_en"]
-                pl.innerHTML = data["word_pl"]
-                if(data["status"]=="NIEZNAM"){
-                    btn_red.style["background"] = "rgb(217,22,22,1)"
-                }
-                if(data["status"]=="KOJARZE"){
-                    btn_yellow.style["background"] = "rgb(248, 248, 8, 1)"
-                }
-                if(data["status"]=="ZNAM"){
-                    btn_green.style["background"] = "rgb(7, 218, 35, 1)"
-                }
-                
-            })
-        }
-        buildWord()
-        let is_display = true
-        const button_next = document.getElementById("next")
-        button_next.addEventListener("click", function(){
-            if(is_display){
-                cover.style["display"] ="none"
-                is_display=false
-                button_next.innerHTML = "Następne"
-            }else{
-                cover.style["display"] ="block"
-                is_display = true
-                button_next.innerHTML = "Pokaż"
-                buildWord()
-            }
-        })
-        btn_red.addEventListener("click", function(){
-            url = `update-status/${window.word_id}`
-
-            fetch(url,{
-                method:"UPDATE",
-                headers:{
-                    "Content-type":"application/json",
-                    "X-CSRFToken":csrftoken,
-                },
-                body:JSON.stringify({"status":"NIEZNAM","id": window.word_id})
-            }).then(function(response){
-                btn_red.style["background"] = "rgb(217,22,22,1)"
-                btn_yellow.style["background"] = "rgb(248, 248, 8, 0.1)"
-                btn_green.style["background"] = "rgb(7, 218, 35, 0.1)"
-            })
-        })
-        
-        btn_yellow.addEventListener("click", function(){
-            url = `update-status/${window.word_id}`
-            fetch(url,{
-                method:"UPDATE",
-                headers:{
-                    "Content-type":"application/json",
-                    "X-CSRFToken":csrftoken,
-                },
-                body:JSON.stringify({"status":"KOJARZE","id": window.word_id})
-            }).then(function(response){
-                btn_red.style["background"] = "rgb(217,22,22,0.1)"
-                btn_yellow.style["background"] = "rgb(248, 248, 8, 1)"
-                btn_green.style["background"] = "rgb(7, 218, 35, 0.1)"
-            })
-        })
-
-        btn_green.addEventListener("click", function(){
-            url = `update-status/${window.word_id}`
-            fetch(url,{
-                method:"UPDATE",
-                headers:{
-                    "Content-type":"application/json",
-                    "X-CSRFToken":csrftoken,
-                },
-                body:JSON.stringify({"status":"ZNAM","id": window.word_id})
-            }).then(function(response){
-                btn_red.style["background"] = "rgb(217,22,22,0.1)"
-                btn_yellow.style["background"] = "rgb(248, 248, 8, 0.1)"
-                btn_green.style["background"] = "rgb(7, 218, 35, 1)"
-            })
-        })
-    
-    </script>
-  </body>
-</html>
+    {%if user.is_authenticated%}
+    <script src="{% static 'apijs.js' %}"></script>     
+    {%endif%}
+{%endblock%}
