@@ -1,0 +1,36 @@
+{%extends 'wordapi/base.html' %}
+{% load static %}
+{%block content%}
+    <div class="my_container">
+        {%if user.is_authenticated%}
+            {% if finished%}
+            <div class="page">
+                <div id="en">Gratulacje</div>
+                <div id="pl">Znasz już wszystkie słowa z listy</div>
+            </div>
+            {%else%}
+            <div class="page">
+                <div id="en">Word</div>
+                <div id="pl">Słowo</div>
+            </div>
+            <div class="mini-nav">
+                <ul>
+                    <li id="red">Nieznam</li>
+                    <li id="yellow">Kojarzę</li>
+                    <li id="green">Znam</li>
+                </ul>
+            </div>
+            <button id="next">Pokaż</button>
+            <div id="cover"></div>
+            {%endif %}
+        {%else%}
+        <div class="my_button"> <a href="{% url 'login_view'%}" class="my_button">Zaloguj się</a> </div>
+        <div class="my_button"> <a href="{% url 'register'%}" class="my_button" >Zarejestruj się</a> </div>
+            
+        {%endif %}
+    </div>
+
+    {%if user.is_authenticated%}
+    <script src="{% static 'apijs.js' %}"></script>     
+    {%endif%}
+{%endblock%}
