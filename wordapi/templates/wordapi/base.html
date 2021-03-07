@@ -13,9 +13,15 @@
   <body>
     {%if user.is_authenticated%}
     <div class="logout_button">
-      <a href="{% url 'main' %}" >Słówka </a><br/>
-      <a href="{% url 'word_list' %}" >Lista słówek </a><br/>
-      <a href="{% url 'logout' %}" >Wyloguj </a><br/>
+      <div class="menu_button">
+        <a href="{% url 'main' %}" >Słówka </a><br/>
+      </div>
+      <div class="menu_button">
+        <a  href="{% url 'word_list' %}" >Lista słówek </a><br/>
+      </div>
+      <div class="menu_button">
+        <a  href="{% url 'logout' %}" >Wyloguj </a><br/>
+      </div>
     </div>
     {%endif%}
     {%block content%}

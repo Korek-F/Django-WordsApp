@@ -29,8 +29,8 @@ def getWord(request):
         word = random.choice(words)
         serializers = WordSerializer(word, many=False)
         return Response(serializers.data)
-    except: 
-        words = ProfileWord.objects.all()
+    except:
+        words = ProfileWord.objects.filter(owner=user)
         word = random.choice(words)
         serializers = WordSerializer(word, many=False)
         return Response(serializers.data)
@@ -46,9 +46,8 @@ def updateStatus(request,pk):
         serializer.save()
     else:
         print(serializer.errors)
-
-
     return Response(serializer.data)
+
 import string
 def validate(password):
     letters = set(string.ascii_letters)
