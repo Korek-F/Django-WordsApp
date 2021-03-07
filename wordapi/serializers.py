@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Word
+from .models import ProfileWord
 
 class WordSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Word
+        model = ProfileWord
         fields="__all__"
+        depth = 1
     

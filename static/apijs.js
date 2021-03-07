@@ -29,14 +29,13 @@ function buildWord(){
     btn_red.style["background"] = "rgb(217,22,22, 0.1)"
     btn_yellow.style["background"] = "rgb(248, 248, 8, 0.1)"
     btn_green.style["background"] = "rgb(7, 218, 35, 0.1)"
-    fetch("get-word")
+    fetch(`get-word`)
     .then((resp)=>resp.json())
     .then(function(data){
         console.log("Data: ", data)
-        console.log(data["id"])
         window.word_id=data["id"]
-        en.innerHTML = data["word_en"]
-        pl.innerHTML = data["word_pl"]
+        en.innerHTML = data["word_en"]["word_en"]
+        pl.innerHTML = data["word_en"]["word_pl"]
         if(data["status"]=="NIEZNAM"){
             btn_red.style["background"] = "rgb(217,22,22,1)"
         }

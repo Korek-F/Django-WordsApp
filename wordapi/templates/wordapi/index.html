@@ -20,11 +20,13 @@
                     <li id="green">Znam</li>
                 </ul>
             </div>
-            <div id="next">Pokaż</div>
+            <button id="next">Pokaż</button>
             <div id="cover"></div>
             {%endif %}
         {%else%}
-            Zaloguj się
+        <div class="my_button"> <a href="{% url 'login_view'%}" class="my_button">Zaloguj się</a> </div>
+        <div class="my_button"> <a href="{% url 'register'%}" class="my_button" >Zarejestruj się</a> </div>
+            
         {%endif %}
     </div>
 

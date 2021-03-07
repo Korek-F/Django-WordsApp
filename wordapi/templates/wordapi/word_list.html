@@ -1,0 +1,36 @@
+{%extends 'wordapi/base.html' %}
+{% load static %}
+{%block content%}
+    <div class="my_container2">
+        <h1>Oto lista twoich słów</h1>
+        <div class="row">
+            {%for word in words%}
+            <div class="col-md-4 col-sm-12">
+                <div class="word_list_word">
+                    <div class="word_list_header">
+                    <b>{{word.word_en.word_en}}</b> ({{word.word_en.word_pl}})
+                    </div>
+                    <div class="word_list_status">
+                        <div class="word_list_icon 
+                        {%if word.status == 'NIEZNAM'%} word_list_red_active {%endif%}
+                        word_list_red icon_{{word_id}}"  data-id={{word.id}}  data-status="NIEZNAM" onclick='red({{word.id}})'>
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <div class="word_list_icon 
+                        {%if word.status == 'KOJARZE'%} word_list_yellow_active {%endif%}
+                        word_list_yellow icon_{{word.id}}" data-id={{word.id}} data-status="KOJARZE" onclick='yellow({{word.id}})'>
+                            <i class="fas fa-question" ></i>
+                        </div>
+                        <div class="word_list_icon 
+                        {%if word.status == 'ZNAM'%} word_list_green_active {%endif%}
+                        word_list_green icon_{{word_id}}" data-id={{word.id}} data-status="ZNAM" onclick='green({{word.id}})'>
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+    <script src="{% static 'word_list.js' %}"></script>   
+{%endblock%}
