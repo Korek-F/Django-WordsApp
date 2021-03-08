@@ -54,6 +54,18 @@ def updateStatus(request,pk):
         print(serializer.errors)
     return Response(serializer.data)
 
+@api_view(["GET"])
+@login_required(login_url='login_view')
+def find_word(request, name):
+    profile = request.user.profile
+    words = ProfileWord.objects.filter(owner=profile)
+    if name=="0":
+        word_instance = words
+    else:
+        word_instance = words.filter(Q(word_en__word_en__contains=str(name))| Q(word_en__word_pl__contains=str(name)))
+    serializer = WordSerializer(instance=word_instance, many=True)
+    return Response(serializer.data)
+
 import string
 def validate(password):
     letters = set(string.ascii_letters)

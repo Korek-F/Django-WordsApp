@@ -2,11 +2,19 @@
 {% load static %}
 {%block content%}
     <div class="my_container2">
-        <h1>Oto lista twoich słów </h1>    
         <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h1>Oto lista twoich słów </h1>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <input type="text" id="word_list_get" class="form-control" placeholder="Wyszukaj słowo"/>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div id="word_list_container" class="row">
             {%for word in words%}
             <div class="col-md-4 col-sm-12">
-                <div class="word_list_word">
+                <div id="word_list_word">
                     <div class="word_list_header">
                     <b>{{word.word_en.word_en}}</b> ({{word.word_en.word_pl}})
                     </div>
@@ -33,7 +41,7 @@
         </div>
         <form action="{% url 'restart_words' %}" method="POST">
             {% csrf_token %}
-            <button type="submit" class="form-control register_form">Restartuj</button>
+            <button type="submit" class="form-control register_form ">Restartuj</button>
         </form>
     </div>
     <script src="{% static 'word_list.js' %}"></script>   

@@ -85,9 +85,9 @@ li{
 #cover{
     position: absolute;
     width:100%;
-    height: 400px;
+    height: 380px;
     background-color: blueviolet;
-    top:140px;
+    top:160px;
     border-radius: 40px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -147,7 +147,7 @@ li{
 
 @media only screen and (max-width: 870px){
     .my_container{
-        margin-top:100px;
+        margin-top:130px;
     }
     .logout_button{
         position: absolute;
@@ -202,7 +202,7 @@ button:active, button:focus{
 
 
 
-.word_list_word{
+#word_list_word{
     height:90px;
     background-color:	#1d1d1d;
     margin:15px!important;
@@ -290,3 +290,4 @@ a:hover{
     font-size: 30px;
 
 }
+

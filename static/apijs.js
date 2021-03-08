@@ -1,3 +1,8 @@
+var script = document.createElement('script');
+script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -53,9 +58,10 @@ let is_display = true
 const button_next = document.getElementById("next")
 button_next.addEventListener("click", function(){
     if(is_display){
-        cover.style["display"] ="none"
+        $("#cover").fadeOut(300); //Opcja 2
+        //cover.style.display ="none" //Opcja 1
         is_display=false
-        button_next.innerHTML = "Następneaa"
+        button_next.innerHTML = "Następne"
     }else{
         cover.style["display"] ="block"
         is_display = true

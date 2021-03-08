@@ -13,5 +13,6 @@ urlpatterns = [
     path('word_list', views.WordListView.as_view(), name="word_list"),
     path('restart_words', views.restart_words, name="restart_words"),
     path('add_word', views.AddWord.as_view(), name="add_word"),
+    path('find_word/<str:name>', views.find_word, name="find_word"),
 ]
 
