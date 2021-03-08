@@ -2,7 +2,7 @@
 {% load static %}
 {%block content%}
     <div class="my_container2">
-        <h1>Oto lista twoich słów</h1>
+        <h1>Oto lista twoich słów </h1>    
         <div class="row">
             {%for word in words%}
             <div class="col-md-4 col-sm-12">
@@ -29,8 +29,12 @@
                     </div>
                 </div>
             </div>
-            {%endfor%}
+            {%endfor%} 
         </div>
+        <form action="{% url 'restart_words' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="form-control register_form">Restartuj</button>
+        </form>
     </div>
     <script src="{% static 'word_list.js' %}"></script>   
 {%endblock%}

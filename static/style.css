@@ -114,7 +114,7 @@ li{
     color: white;
     width:200px;
     
-    position: absolute;
+    position: fixed;
     font-size: 30px;
     right:0;
     top:0;
@@ -150,11 +150,12 @@ li{
         margin-top:100px;
     }
     .logout_button{
+        position: absolute;
         width:100%; 
         margin-right: 0%;
     }
     .menu_button{
-        width:33.3%;
+        width:50%;
         float:left;
     }
     .my_container2{
@@ -173,10 +174,10 @@ li{
         width:100%;
     }
     .my_container{
-        margin-top:160px;
+        margin-top:210px;
     }
     .my_container2{
-        margin-top:180px;
+        margin-top:200px;
     }
     }
 
@@ -274,4 +275,18 @@ a:hover{
     rgb(255,255,255) 2.44769px -1.73459px 0px, 
     rgb(255,255,255) 2.88051px -0.838247px 0px;
     color:black!important;
+}
+
+.word_success_message{
+    width:80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: rgb(103, 250, 116);
+    height: 50px;
+    margin-top:40px;
+    border-radius: 10px;
+    color:black;
+    text-align: center;
+    font-size: 30px;
+
 }

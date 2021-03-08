@@ -1,0 +1,23 @@
+{%extends 'wordapi/base.html' %}
+{% load static %}
+{%block content%}
+    <div class="my_container" >
+        <div style="text-align: center; padding-top: 50px;">
+            <h1>Dodaj słówko </h1>
+        </div>
+        <form action="{% url 'add_word' %}" method="POST"> 
+            {% csrf_token %}
+            <input type="text" name="word_en_add" class="form-control register_form" placeholder="Słówko po angielsku">
+            <input type="text" name="word_pl_add" class="form-control register_form" placeholder="Słówko po polsku">
+            <button type="submit" class="form-control register_form" >Dodaj </button>
+        </form>
+        <form  action="{% url 'word_list'%}">
+            <button type="submit" class="form-control register_form" >Powrót</button>
+        </form>
+        {%if word_add_message%}
+            <div class="word_success_message"> 
+                {{word_add_message}}
+            </div>
+        {%endif%}
+    </div>
+{%endblock%}

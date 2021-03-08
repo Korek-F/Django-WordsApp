@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Word(models.Model):
     word_en = models.CharField(max_length=60,  null=True)
     word_pl = models.CharField(max_length=60, null=True)
+    public = models.BooleanField(default=True)
     #STATUS_CHOICES[0][0]
     def __str__(self):
         return self.word_en 
@@ -21,6 +22,8 @@ class ProfileWord(models.Model):
     )
 
     status = models.CharField(choices=STATUS_CHOICES, default=None, max_length=255, null=True)
+    class Meta:
+        ordering = ['-status']
 
     def __str__(self):
         return self.owner.user.username+" "+str(self.word_en.word_en)

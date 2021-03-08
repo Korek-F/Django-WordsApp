@@ -11,5 +11,7 @@ urlpatterns = [
     path('register', views.RegisterView.as_view(), name="register"),
     path('login_view', views.LoginView.as_view(), name="login_view"),
     path('word_list', views.WordListView.as_view(), name="word_list"),
+    path('restart_words', views.restart_words, name="restart_words"),
+    path('add_word', views.AddWord.as_view(), name="add_word"),
 ]
 

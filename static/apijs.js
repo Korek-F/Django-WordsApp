@@ -55,7 +55,7 @@ button_next.addEventListener("click", function(){
     if(is_display){
         cover.style["display"] ="none"
         is_display=false
-        button_next.innerHTML = "Następne"
+        button_next.innerHTML = "Następneaa"
     }else{
         cover.style["display"] ="block"
         is_display = true

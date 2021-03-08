@@ -11,6 +11,9 @@
                 <input type="password" class="form-control register_form" placeholder="Hasło" name="password" />
                 <button type="submit" class="form-control register_form">Zarejestruj</button>
             </form>
+            <form  action="{% url 'main'%}">
+                <button type="submit" class="form-control register_form" >Powrót</button>
+            </form>
         </div>
     </div>
 {%endblock%}
