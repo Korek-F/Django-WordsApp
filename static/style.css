@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin:0;
     padding: 0;
+    user-select: none;
 }
 body{
     background: rgb(45,22,217);
@@ -216,6 +217,7 @@ button:active, button:focus{
     width: 20%!important;
     text-align: center;
     border-radius: 10px;
+    padding:5px!important;
 }
 .word_list_red{
     margin-left: 10%;

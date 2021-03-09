@@ -118,7 +118,18 @@ class WordListView(LoginRequiredMixin,View):
     def get(self, request):
         user = request.user.profile
         words = ProfileWord.objects.filter(owner=user)
-        return render(request, "wordapi/word_list.html", {'words':words})
+        word_count = words.count()
+        r_word = words.filter(status="NIEZNAM").count()
+        y_word = words.filter(status="KOJARZE").count()
+        g_word = words.filter(status="ZNAM").count()
+        context={
+            'words':words,
+            "word_count":word_count,
+            "r_word":r_word,
+            "y_word":y_word,
+            "g_word":g_word,
+        }
+        return render(request, "wordapi/word_list.html", context)
     
 
 def restart_words(request):
